@@ -33,6 +33,7 @@ class HomeController extends Controller
         $users = HasilResponse::select('nama', 'nama_jalan as jalan', 'email', 'jk.jenis_kelamin', 'profesi.nama_profesi as profesi')
             ->join('jenis_kelamin as jk', 'hasil_response.jenis_kelamin', '=', 'jk.id')
             ->join('profesi', 'hasil_response.profesi', '=', 'profesi.id')
+            ->orderBy('hasil_response.created_at', 'desc')
             ->get();
 
         return ResponseFormatter::success([
@@ -40,7 +41,7 @@ class HomeController extends Controller
         ], 'Data berhasil diambil');
     }
 
-    public function getRandomUser(Request $request)
+    public function getRandomUser()
     {
         try {
             DB::beginTransaction();
