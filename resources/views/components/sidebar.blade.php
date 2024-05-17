@@ -20,27 +20,17 @@
     <ul class="nav nav-primary">
         {{-- Daftar Pengguna --}}
         <li class="nav-item @if ($currentNav == 'user') active @endif">
-            <a href="{{ route('home') }}">
+            <a href="{{ route('user') }}">
                 <i class="fas fa-user"></i>
                 <p>Daftar Pengguna</p>
             </a>
         </li>
-        {{-- rent --}}
-        <li class="nav-item @if ($currentNav == 'rent') active @endif">
-            <a data-toggle="collapse" href="#rentMenu">
+        {{-- Daftar Barang --}}
+        <li class="nav-item @if ($currentNav == 'product') active @endif">
+            <a href="{{ route('product') }}">
                 <i class="fas fa-box"></i>
-                <p>Peminjaman</p>
-                <span class="caret"></span>
+                <p>Daftar Barang</p>
             </a>
-            <div class="collapse" id="rentMenu">
-                <ul class="nav nav-collapse">
-                    <li class="@if ($currentNavChild == 'index') active @endif">
-                        <a href="{{ route('home') }}">
-                            <span class="sub-item">Daftar Pinjam</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </li>
     </ul>
 </div>

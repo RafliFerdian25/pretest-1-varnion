@@ -8,7 +8,7 @@
                 <h4 class="page-title">Home User</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('user') }}">
                             <i class="flaticon-home"></i>
                         </a>
                     </li>
@@ -48,10 +48,10 @@
                                         <tr class="space-nowrap">
                                             <th class="text-center">Nomor</th>
                                             <th class="text-center">Nama</th>
-                                            <th class="">Jenis Kelamin</th>
-                                            <th class="">Jalan</th>
-                                            <th class="">Email</th>
-                                            <th class="">Profesi</th>
+                                            <th class="text-center">Jenis Kelamin</th>
+                                            <th class="text-center">Jalan</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Profesi</th>
                                         </tr>
                                     </thead>
                                     <tbody id="userTableBody">
@@ -79,7 +79,7 @@
                                         <tr class="space-nowrap">
                                             <th class="text-center">Nomor</th>
                                             <th class="text-center">Profesi</th>
-                                            <th class="">Jumlah</th>
+                                            <th class="text-center">Jumlah</th>
                                         </tr>
                                     </thead>
                                     <tbody id="professionTableBody">
@@ -100,7 +100,11 @@
             columnDefs: [{
                 targets: 'filter-none',
                 orderable: false,
-            }],
+            }, {
+                targets: [0],
+                width: '10%',
+                className: 'text-center'
+            }, ],
             language: {
                 "sEmptyTable": "Tidak ada data yang tersedia di tabel",
                 "sInfo": "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
@@ -146,9 +150,20 @@
 
         const professionTable = $('#professionTable').DataTable({
             columnDefs: [{
-                targets: 'filter-none',
-                orderable: false,
-            }],
+                    targets: 'filter-none',
+                    orderable: false,
+                },
+                {
+                    targets: [0],
+                    width: '10%',
+                    className: 'text-center'
+                },
+                {
+                    targets: [1, 2],
+                    className: 'text-center'
+                }
+
+            ],
             language: {
                 "sEmptyTable": "Tidak ada data yang tersedia di tabel",
                 "sInfo": "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
@@ -228,8 +243,6 @@
                                     false)
                                 .node();
 
-                            $(rowNode).find('td').eq(0).addClass('text-center');
-                            $(rowNode).find('td').eq(3).addClass('text-nowrap');
                         });
 
                         // mengambil data profesi
@@ -250,7 +263,6 @@
                                     false)
                                 .node();
 
-                            $(rowNode).find('td').eq(0).addClass('text-center');
                         });
                     } else {
                         $('#userTableBody').html(tableEmpty(11, 'Pengguna'));
@@ -294,65 +306,16 @@
                             if (xhr.responseJSON) {
                                 swal({
                                     title: "Gagal!",
-                                    text: xhr.statusText + ", Error : " + xhr
-                                        .responseJSON.message,
+                                    text: xhr.responseJSON.meta.message + ", Error : " + xhr
+                                        .responseJSON.data.error,
                                     icon: "error",
                                 });
                             } else {
                                 swal({
                                     title: "Gagal!",
                                     text: "Terjadi kegagalan, silahkan coba beberapa saat lagi! Error: " +
-                                        error,
-                                    icon: "error",
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        }
-
-        function deleteUser(id) {
-            swal({
-                dangerMode: true,
-                title: "Apakah anda yakin?",
-                text: "Data Pengguna akan dihapus!",
-                icon: "warning",
-                buttons: ["Batal", "Hapus"],
-            }).then((result) => {
-                if (result) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: `{{ url('/user/${id}') }}`,
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                        },
-                        success: function(response) {
-                            swal({
-                                    title: "Berhasil!",
-                                    text: response.meta.message,
-                                    icon: "success",
-                                    buttons: {
-                                        ok: "OK",
-                                    },
-                                })
-                                .then(() => {
-                                    getUsers();
-                                });
-                        },
-                        error: function(xhr, status, error) {
-                            if (xhr.responseJSON) {
-                                swal({
-                                    title: "Gagal!",
-                                    text: xhr.statusText + ", Error : " + xhr
-                                        .responseJSON.message,
-                                    icon: "error",
-                                });
-                            } else {
-                                swal({
-                                    title: "Gagal!",
-                                    text: "Terjadi kegagalan, silahkan coba beberapa saat lagi! Error: " +
-                                        error,
+                                        xhr
+                                        .responseJSON.data.error,
                                     icon: "error",
                                 });
                             }
