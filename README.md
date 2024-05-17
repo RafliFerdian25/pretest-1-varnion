@@ -55,12 +55,12 @@ Aplikasi ini menggunakan dua tabel utama:
         - Berisi informasi profesi
 
 2. **Pretest-2**:
-        - **barang**
-            - Berisi informasi mengenai data barang
-        - **kategori_barang**
-            - Berisi informasi kategori dari barang
-        - **satuan_barang**
-            - Berisi informasi satuan dari barang
+    - **barang**
+        - Berisi informasi mengenai data barang
+    - **kategori_barang**
+        - Berisi informasi kategori dari barang
+    - **satuan_barang**
+        - Berisi informasi satuan dari barang
 
 ## Teknologi yang Digunakan
 
