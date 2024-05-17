@@ -67,3 +67,8 @@ Aplikasi ini menggunakan dua tabel utama:
 - Laravel 10: Framework PHP yang digunakan untuk membangun aplikasi ini dengan versi 10.
 - MySQL: Database yang digunakan untuk menyimpan data aplikasi.
 - Composer: Dependency manager untuk PHP yang digunakan untuk mengelola library dan dependensi.
+
+## Akun 
+- Akun Login
+  - Email : varnion@varnion.com
+  - Password : Secret123
