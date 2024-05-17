@@ -7,9 +7,9 @@
         </div>
         <div class="info">
             <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                <span>Petugas
-                    <span class="user-level">Administrator</span>
-                    <span class="caret"></span>
+                <span>Rafli Ferdian
+                    {{-- <span class="user-level">Administrator</span>
+                    <span class="caret"></span> --}}
                 </span>
             </a>
             <div class="clearfix"></div>
@@ -32,5 +32,14 @@
                 <p>Daftar Barang</p>
             </a>
         </li>
+        {{-- logout --}}
+        @if (Auth::check())
+            <li class="nav-item">
+                <a href="/logout" onclick="logout()" class="hover-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                </a>
+            </li>
+        @endif
     </ul>
 </div>
